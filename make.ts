@@ -7,14 +7,15 @@ try{
 }catch{}
 await Deno.mkdir("./icons/")
 
-const icons: string[] = []
+const iconsPaths: string[] = []
 
 for(const [name,data] of Object.entries(icons)){
-  promises.push(async ()=>{
     const vue = `<template>${data.svg}</template>`
-    await Deno.writeTextFile(data.slug+".vue",vue)
-    icons.push(`./icons/${data.slug}.vue`)
-  })
+    await Deno.writeTextFile("./icons/"+data.slug+".vue",vue)
+    iconsPaths.push([data.slug, `./icons/${data.slug}.vue`])
 }
 await Promise.all(promises)
-console.log(icons)
+
+const exports = iconsPaths.map(([name,path]) => `export ${name[0].toUpperCase() + name.slice(1)}Icon from "${path}"`).join("\n")
+
+await Deno.writeTextFile("./icons/index.ts",exports)
