@@ -16,6 +16,6 @@ for(const [name,data] of Object.entries(icons)){
 }
 await Promise.all(promises)
 
-const exports = iconsPaths.map(([name,path]) => `export ${name[0].toUpperCase() + name.slice(1)}Icon from "${path}"`).join("\n")
+const exports = iconsPaths.map(([name,path]) => `export Icon${name[0].toUpperCase() + name.slice(1)} from "${path}"`).join("\n")
 
 await Deno.writeTextFile("./icons/index.ts",exports)
