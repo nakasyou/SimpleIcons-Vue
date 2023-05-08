@@ -12,7 +12,7 @@ const iconsPaths: string[] = []
 for(const [name,data] of Object.entries(icons)){
     const vue = `<template>${data.svg}</template>`
     await Deno.writeTextFile("./icons/"+data.slug+".vue",vue)
-    iconsPaths.push([data.slug, `./icons/${data.slug}.vue`])
+    iconsPaths.push([data.slug, `./${data.slug}.vue`])
 }
 await Promise.all(promises)
 
