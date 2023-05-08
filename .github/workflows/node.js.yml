@@ -23,6 +23,8 @@ jobs:
         cache: 'npm'
     - name: Setup Deno
       uses: denoland/setup-deno@v1.1.2
+    - name: Install deps
+      run: yarn install
     - name: Make Icon components
       run: deno run -A make.ts
     - name: Build
