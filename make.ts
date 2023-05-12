@@ -1,5 +1,13 @@
 import * as icons from 'npm:simple-icons'
 
+const simpleIconsApiRes = await fetch("https://registry.npmjs.org/react-chuck")
+const simpleIconsApiData = await simpleIconsApiRes.json()
+const simpleIconsLatestVersion: string = Object.keys(simpleIconsApiData.versions).at(-1)
+
+const packageJson = JSON.parse(await Deno.readTextFile("./package.json"))
+packageJson.version = simpleIconsLatestVersion
+await Deno.writeTextFile(JSON.stringify(packageJson))
+
 const promises: Array<Promise<void>> = []
 
 try{
