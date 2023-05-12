@@ -1,6 +1,6 @@
 import * as icons from 'npm:simple-icons'
 
-const simpleIconsApiRes = await fetch("https://registry.npmjs.org/react-chuck")
+const simpleIconsApiRes = await fetch("https://registry.npmjs.org/simple-icons")
 const simpleIconsApiData = await simpleIconsApiRes.json()
 const simpleIconsLatestVersion: string = Object.keys(simpleIconsApiData.versions).at(-1)
 
