@@ -6,7 +6,7 @@ const simpleIconsLatestVersion: string = Object.keys(simpleIconsApiData.versions
 
 const packageJson = JSON.parse(await Deno.readTextFile("./package.json"))
 packageJson.version = simpleIconsLatestVersion
-await Deno.writeTextFile(JSON.stringify(packageJson))
+await Deno.writeTextFile("./package.json",JSON.stringify(packageJson))
 
 const promises: Array<Promise<void>> = []
 
