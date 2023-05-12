@@ -4,6 +4,13 @@ const simpleIconsApiRes = await fetch("https://registry.npmjs.org/simple-icons")
 const simpleIconsApiData = await simpleIconsApiRes.json()
 const simpleIconsLatestVersion: string = Object.keys(simpleIconsApiData.versions).at(-1)
 
+const simpleIconsVueApiRes = await fetch("https://registry.npmjs.org/simpleicons-for-vue")
+const simpleIconsVueApiData = await simpleIconsApiRes.json()
+const simpleIconsVueLatestVersion: string = Object.keys(simpleIconsApiData.versions).at(-1)
+
+if(simpleIconsVueLatestVersion === simpleIconsLatestVersion)
+  close()
+
 const packageJson = JSON.parse(await Deno.readTextFile("./package.json"))
 packageJson.version = simpleIconsLatestVersion
 await Deno.writeTextFile("./package.json",JSON.stringify(packageJson))
